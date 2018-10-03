@@ -14,14 +14,14 @@ import com.serhiiboiko.spring_boot_app.repository.DepartmentRepository;
 import com.serhiiboiko.spring_boot_app.repository.EmployeeRepository;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
 
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public List<Employee> getAllEmployees() {
 		return employeeRepository.findAll();
 	}

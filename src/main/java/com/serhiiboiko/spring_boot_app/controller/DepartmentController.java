@@ -13,12 +13,12 @@ import com.serhiiboiko.spring_boot_app.exception.ResourceNotFoundException;
 import com.serhiiboiko.spring_boot_app.repository.DepartmentRepository;
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 public class DepartmentController {
 	@Autowired
 	DepartmentRepository departmentRepository;
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public List<Department> getAllDepartments() {
 		return departmentRepository.findAll();
 	}
