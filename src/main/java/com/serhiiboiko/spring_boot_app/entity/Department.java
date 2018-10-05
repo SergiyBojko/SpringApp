@@ -1,14 +1,23 @@
 package com.serhiiboiko.spring_boot_app.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
 
 @Entity
+@Data
 public class Department {
 	
 	@Id
@@ -23,39 +32,16 @@ public class Department {
 	        inverseJoinColumns = { @JoinColumn(name = "id_employee") }
 	)
 	@JsonBackReference
+	@Setter(value=AccessLevel.PRIVATE) 
 	private List<Employee> employees;
 	
-	public Department () {}
-	
-	public Department(int id, String name, String description) {
-		super();
-		this.id = id;
+	public Department () {
+		employees = new ArrayList<>();
+	}
+
+	public Department (String name, String description) {
+		this();
 		this.name = name;
 		this.description = description;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public List<Employee> getEmployees() {
-		return employees;
-	}
-
 }

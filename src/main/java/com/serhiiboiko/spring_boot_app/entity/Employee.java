@@ -1,14 +1,19 @@
 package com.serhiiboiko.spring_boot_app.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
 
 @Entity
+@Data
 public class Employee {
 	
 	@Id
@@ -17,33 +22,15 @@ public class Employee {
 	private String name;
 	@ManyToMany(mappedBy="employees")
 	@JsonManagedReference
+	@Setter(value=AccessLevel.PRIVATE) 
 	private List<Department> departments;
-	public Employee() {};
-
-	public Employee(int id, String name) {
-		super();
-		this.id = id;
+	
+	public Employee () {
+		departments = new ArrayList<>();
+	}
+	
+	public Employee (String name) {
+		this();
 		this.name = name;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Department> getDepartments() {
-		return departments;
-	}
-	
-	
-	
-	
-	
 }

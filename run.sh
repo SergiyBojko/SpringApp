@@ -8,6 +8,6 @@ docker run --name containerizedDatabase -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USE
 
 ./mvnw package -Dmaven.test.skip=true
 docker build -t spring_app .
-docker run --name spring_c --network my-net -p 8080:8080 -d spring_app
+docker run --name spring_c --network my-net -p 8080:8080 spring_app
 
 echo Done
